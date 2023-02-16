@@ -138,6 +138,8 @@ if (productUser === 1) {
     }    
 }
 
+// ---- Prueba mostrar precio en pesos de productos Apple con metodo .map ---- //
+
 const productosApplePesos = productosApple.map((producto)=> {
     return {
         nombre: producto.nombre,
@@ -152,7 +154,8 @@ if (verProdApplePesos === "si") {
     });
 } else {}
 
-// ---- Calculo de Stock en consola ---- //
+
+// ---- Mostrar por consola nuevo stock de productos compraods ---- //
 
 function restarStock(valorA, valorB){
     return valorA - valorB;
