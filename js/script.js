@@ -162,3 +162,4 @@ if (productUser === 1) {
         alert(`El total es de ${totalProductoStanley} pesos.`)
     }    
 }
+
