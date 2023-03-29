@@ -35,24 +35,19 @@ const producto20 = new Producto (20,"Mac", "Gris espacial", 700000, 10);
 
 const productosApple = [producto10, producto11, producto12, producto13, producto14, producto15, producto16, producto17, producto18, producto20];
 
+const productosAppleIphone = productosApple.slice(0,4);
+
+const productosAppleAirpods = productosApple.slice(4,6);
+
+const productosAppleAppleWatch = productosApple.slice(6,9);
+
+const productosAppleMac = productosApple.slice(9,10);
+
+
 const productosTodos = productosStanley.concat(productosApple)
 console.log(productosTodos)
+
 /*
-const contenedorProductosStanley = document.getElementById("contenedorProductosStanley");
-productosStanley.forEach(Producto => {
-    const div = document.createElement("div");
-    div.innerHTML = `<div class="card" style="width: 18rem;">
-                             <img class="card-img-top" src="./images/(...)" alt="Card image cap">
-                             <div class="card-body">
-                               <h3 class="card-title">${Producto.nombre}</h3>
-                               <p class="card-text">Disponible actualmente en color ${Producto.color}.</p>
-                               <h5 class="card-title">$${Producto.precio}</h5>
-                               <input type="button" onclick="agregarCarrito(${Producto.id})" class="btn btn-primary" value="Agregar al carrito">
-                             </div>
-                          </div>`
-                     contenedorProductosStanley.appendChild(div);
-})
-*/
 const contenedorProductosStanley = document.getElementById("contenedorProductosStanley");
 productosStanley.forEach(Producto => {
     const div = document.createElement("div");
@@ -67,9 +62,9 @@ productosStanley.forEach(Producto => {
                        </div>`;
                       contenedorProductosStanley.appendChild(div);
 })
-
-const contenedorProductosApple = document.getElementById("contenedorProductosApple");
-productosApple.forEach(Producto => {
+*/
+const contenedorProductosAppleIphone = document.getElementById("contenedorProductosAppleIphone");
+productosAppleIphone.forEach(Producto => {
     const div = document.createElement("div");
     div.innerHTML = `<div class="card" style="width: 18rem;">
                           <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
@@ -80,28 +75,55 @@ productosApple.forEach(Producto => {
                               <input type="button" onclick="agregarCarrito(${Producto.id})" class="btn btn-primary" value="Agregar al carrito">
                           </div>
                        </div>`;
-                      contenedorProductosApple.appendChild(div);
+                      contenedorProductosAppleIphone.appendChild(div);
+})
+
+const contenedorProductosAppleAirpods = document.getElementById("contenedorProductosAppleAirpods");
+productosAppleAirpods.forEach(Producto => {
+    const div = document.createElement("div");
+    div.innerHTML = `<div class="card" style="width: 18rem;">
+                          <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+                          <div class="card-body">
+                              <h5 class="card-title">${Producto.nombre}</h5>
+                              <p class="card-text">Disponible actualmente en color ${Producto.color}.</p>
+                              <h5 class="card-title">$${Producto.precio}</h5>
+                              <input type="button" onclick="agregarCarrito(${Producto.id})" class="btn btn-primary" value="Agregar al carrito">
+                          </div>
+                       </div>`;
+                      contenedorProductosAppleAirpods.appendChild(div);
+})
+
+const contenedorProductosAppleAppleWatch = document.getElementById("contenedorProductosAppleAppleWatch");
+productosAppleAppleWatch.forEach(Producto => {
+    const div = document.createElement("div");
+    div.innerHTML = `<div class="card" style="width: 18rem;">
+                          <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+                          <div class="card-body">
+                              <h5 class="card-title">${Producto.nombre}</h5>
+                              <p class="card-text">Disponible actualmente en color ${Producto.color}.</p>
+                              <h5 class="card-title">$${Producto.precio}</h5>
+                              <input type="button" onclick="agregarCarrito(${Producto.id})" class="btn btn-primary" value="Agregar al carrito">
+                          </div>
+                       </div>`;
+                      contenedorProductosAppleAppleWatch.appendChild(div);
+})
+
+const contenedorProductosAppleMac = document.getElementById("contenedorProductosAppleMac");
+productosAppleMac.forEach(Producto => {
+    const div = document.createElement("div");
+    div.innerHTML = `<div class="card" style="width: 18rem;">
+                          <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+                          <div class="card-body">
+                              <h5 class="card-title">${Producto.nombre}</h5>
+                              <p class="card-text">Disponible actualmente en color ${Producto.color}.</p>
+                              <h5 class="card-title">$${Producto.precio}</h5>
+                              <input type="button" onclick="agregarCarrito(${Producto.id})" class="btn btn-primary" value="Agregar al carrito">
+                          </div>
+                       </div>`;
+                      contenedorProductosAppleMac.appendChild(div);
 })
 
 
-/*
-const contenedorProductosStanley2 = (productosStanley) => {
-    for(Producto of productosStanley){
-        const card = document.createElement("div")
-        card.innerHTML =  `<div class="card" style="width: 18rem;">
-                             <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
-                             <div class="card-body">
-                               <h5 class="card-title">${Producto.nombre}</h5>
-                               <p class="card-text">Disponible actualmente en color ${Producto.color}.</p>
-                               <a href="#" class="btn btn-primary">Go somewhere</a>
-                               <input type="button" onclick="agregarCarrito(${Producto.id})" class="btn btn-primary" value="Agregar al carrito">
-                             </div>
-                           </div>`;
-                          document.body.append(card);
-    }
-}
-contenedorProductosStanley2(productosStanley);
-*/
 const arrayCarrito = [];
 
 class objetosCarrito{
@@ -125,30 +147,8 @@ function agregarCarrito(producto){
 //      console.table(arrayCarrito)
     }
 }
-
-               
+              
 /*
-function verCarrito(){
-    const contenedorCarrito = document.getElementById("contenedorCarrito");
-    document.body.innerHTML = ``
-    for(item of arrayCarrito){
-        let div = document.createElement("div")
-        let datosProductos = productosStanley.find(elem => elem.id == item.producto)  
-
-        div.innerHTML = `<div class="card" style="width: 18rem;">
-                             <img class="card-img-top" src="./images/${Producto.imagen}" alt="Card image cap">
-                             <div class="card-body">
-                               <h3 class="card-title">${datosProductos.nombre}</h3>
-                               <p class="card-text">Disponible actualmente en color ${datosProductos.color}.</p>
-                               <h5 class="card-title">$${datosProductos.precio}</h5>
-                               <p class="card-text"> Te llevas ${item.cantidad}</p>
-                             </div>
-                          </div>`;
-                          contenedorCarrito.appendChild(div);
-    }
-}
-*/
-
 // FUNCIONA
 function verCarrito(){
 //    const contenedorCarrito = document.getElementById("contenedorCarrito")
@@ -173,52 +173,69 @@ function verCarrito(){
                         document.body.append(div);
     }
 }
-
-
-// CHATGPT
-/*
-function verCarrito(){
-    const contenedorCarrito = document.getElementById("contenedorCarrito");
-    document.body.innerHTML = ``;
-    arrayCarrito.forEach(item => {
-        let datosProductos = productosStanley.find(elem => elem.id == item.producto);
-        const div = document.createElement("div");
-        
-        div.innerHTML = `<div class="card" style="width: 18rem;">
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
-                            <div class="card-body">
-                                <h5 class="card-title">${datosProductos.nombre}</h5>
-                                <p class="card-text">Disponible actualmente en color ${datosProductos.color}.</p>
-                                <h5 class="card-title">$${datosProductos.precio}</h5>
-                                <p class="card-text"> Te llevas ${item.cantidad}</p>
-                            </div>
-                        </div>`;
-                        contenedorCarrito.appendChild(div);
-    });
-}
 */
-/*
-function verCarrito(){
-        const elementoABorrar = document.querySelector("main", ".contenedorProductosStanley");
-        elementoABorrar.remove();
-        const contenedorCarrito = document.getElementById("contenedorCarrito")
-        for(item of arrayCarrito){
+
+function verCarrito() {
+    const elementoABorrar = document.querySelector("main", ".contenedorProductosStanley");
+    elementoABorrar.remove();
+    if (arrayCarrito.length >= 1) {
+        let div = document.createElement("div");
+        div.id = "contenedorCarrito";
+        div.innerHTML = `<h3>Has seleccionado los siguientes productos:</h3>`
+        document.body.append(div);
+        
+        let btn = document.createElement("button");
+        btn.id = "botonnn";
+        btn.innerHTML = `<input type="button" class="btn btn-danger" value="Eliminar del carrito">`;
+        document.body.append(btn);
+        let limpiarCarrito = document.getElementById("botonnn");
+        limpiarCarrito.addEventListener("click", limpiarRespuesta);
+
+        function limpiarRespuesta(){
+//                const elementosABorrar = document.querySelector(".card");
+                const elementosABorrar = document.querySelector("#contenedorCarrito")
+                elementosABorrar.remove();
+        }
+
+        for (item of arrayCarrito) {
             let div = document.createElement("div");
-            let datosProductos = productosStanley.find(elem => elem.id == item.producto)  
-            div.innerHTML = `<p>Has seleccionado los siguientes productos:</p>
-                             <div class="card" style="width: 18rem;">
+            div.id = "contenedorCarrito";
+            let datosProductos = productosTodos.find(elem => elem.id == item.producto)
+            const totalCompraProducto = item.cantidad * datosProductos.precio;
+            div.innerHTML = `<div class="card" style="width: 18rem;">
                                 <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
                                 <div class="card-body">
                                     <h5 class="card-title">${datosProductos.nombre}</h5>
                                     <p class="card-text">Disponible actualmente en color ${datosProductos.color}.</p>
                                     <h5 class="card-title">$${datosProductos.precio}</h5>
-                                    <p class="card-text"> Te llevas ${item.cantidad}</p>
+                                    <p class="card-text"> Te llevas ${item.cantidad} por un total de $${totalCompraProducto}.</p>
                                 </div>
-                             </div>`;
-                           contenedorCarrito.appendChild(div);
+                             </div>
+                             <input type="button" onclick="eliminarCarrito(${datosProductos})" class="btn btn-primary" id="botonVaciarCarrito" value="Eliminar del carrito">`;
+            document.body.append(div);     
         }
+    } else {
+        let div = document.createElement("div");
+        div.id = "contenedorCarrito";
+        div.innerHTML = `<p>El carrito esta vacío.</p>
+                         <input type="button" class="btn btn-primary" id="agregarProductosAlCarrito" value="Agregar productos al carrito">`;
+        document.body.append(div);
     }
-*/
+/*/ Nuevo
+    const botonVaciarCarrito = document.getElementById("botonVaciarCarrito");
+    botonVaciarCarrito.addEventListener("click", eventoBotonVaciarCarrito);
+    function eventoBotonVaciarCarrito(){
+        const vaciarrr = document.querySelectorAll(".card")
+        vaciarrr.remove();
+    }
+
+    const agregarProductosCarrito = document.getElementById("agregarProductosAlCarrito");
+    agregarProductosCarrito.addEventListener("click", eventoAgregarAlCarrito);
+    function eventoAgregarAlCarrito(){
+    }
+    hasta aca
+//*/       
+}
 
 
 // ------- Boton para visualizar el carrito de compras ------- //
@@ -233,6 +250,20 @@ function botonRespuesta(){
 }
 
 
+// ------- Boton para vaciar el carrito ------- //
+/*
+let botonEliminarCarrito = document.getElementsByClassName("btn btn-primary");
+botonEliminarCarrito.onclick= () =>{
+alert("gdt")
+}    
+
+function botonEliminar(){
+    
+    alert("Está siendo redirigido al carrito de compras")
+    console.log("Función de visualizar carrito ejecutada correctamente")
+    verCarrito()
+}
+*/
 // ------- Guardar en el Storage el carrito de compras del usuario ------- //
 
 localStorage.setItem("Carrito de usuario", arrayCarrito);
@@ -254,3 +285,21 @@ localStorage.setItem("producto0", "producto0JSON");
 const objetoJSON = localStorage.getItem("producto0");
 const objeto = JSON.parse(objetoJSON);
 console.log(objeto);
+
+
+
+// FALTANTES:
+
+//IMAGENES DE PRODUCTOS
+
+// BOTON PARA ELIMINAR PRODUCTOS DEL CARRITO DE COMPRAS
+// BOTON PARA AGREGAR MAS PRODUCTOS AL CARRITO DE COMPRAS
+// BOTON PARA VACIAR EL CARRITO
+
+// LIBERIA COMO SWEAT ALERT
+
+// API
+
+// ASINCRONIA Y PROMESAD
+
+// AJAX Y FETCH

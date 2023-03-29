@@ -1,8 +1,3 @@
-//let nameUser = prompt("Éste sera el sitio web de USAImports, por favor díganos su nombre:");
-//let welcomeUser = `Bienvenido ${nameUser} a USAImports`;
-
-//alert(welcomeUser);
-
 const lineaProducto0 = "Linea Stanley";
 const lineaProducto1 = "Linea Apple";
 
@@ -12,13 +7,14 @@ class Producto{
         this.nombre = nombre;
         this.color = color;
         this.precio = precio;
-        this.stock = stock
+        this.stock = stock;
+        this.imagen = this.imagen
     }
 }
 
-const producto0 = new Producto (0,"Termos", "Verde", 25000, 20);
-const producto1 = new Producto (1,"Botellas", "Blanco", 20000, 20);
-const producto2 = new Producto (2,"Vasos", "Negro", 15000, 15);
+const producto0 = new Producto (0,"Termos", "Verde", 25000, 20, 'stanley.jpeg');
+const producto1 = new Producto (1,"Botellas", "Blanco", 20000, 20, 'stanley.jpeg');
+const producto2 = new Producto (2,"Vasos", "Negro", 15000, 15, 'stanley.jpeg');
 
 const productosStanley = [producto0, producto1, producto2];
 
@@ -28,216 +24,101 @@ const producto22 = new Producto (22,"AppleWatch", "Negro", 500, 15);
 const producto33 = new Producto (33,"Mac", "Gris espacial", 3000, 10);
 
 const productosApple = [producto00, producto11, producto22, producto33];
-/*
-const contenedorProductosStanley = document.getElementById("contenedorProductosStanley");
-productosStanley.forEach(Producto => {
-    const div = document.createElement("div");
-    div.innerHTML = `<p>Nombre: ${Producto.nombre}</p>
-                     <p>Precio: ${Producto.precio}</p>
-                     <input type= "button" id="botonAgregarCarrito" value="Agregar al carrito>`;
-                     contenedorProductosStanley.appendChild(div);
-})
-*/
-/*
-const contenedorProductosStanley3 = (productosStanley) => {
-    for(Producto of productosStanley){
-        const card = document.createElement("div")
-        card.innerHTML = `<h3>${Producto.nombre}</h3>
-                          <p>Disponible en color ${Producto.color}</p>
-                          <p>${Producto.precio}</p>`;
-                          document.body.append(card);
-    }
-}
-contenedorProductosStanley3(productosStanley);
-*/
-/*
-let botonCarrito = document.getElementById("buttonCarrito")
-botonCarrito.addEventListener("click", botonCarritoRespuesta)
-
-function botonCarritoRespuesta(){
-    console.log(`sumado al`)
-}
-*/
 
 
-
-
-
-
-/*
-const contenedorProductosStanley = document.getElementById("contenedorProductosStanley");
-productosStanley.forEach(Producto => {
-    const div = document.createElement("div");
-    div.innerHTML = `<p>Nombre: ${Producto.nombre}</p>
-                     <p>Precio: ${Producto.precio}</p>
-                     <button>Agregar al carrito</button>`;
-                     contenedorProductosStanley.appendChild(div);
-})
-
-*/
 const contenedorProductosStanley2 = (productosStanley) => {
     for(Producto of productosStanley){
         const card = document.createElement("div")
-        card.innerHTML =  `<div class="card" style="width: 18rem;">
-                             <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+        card.innerHTML = `<div class="card" style="width: 18rem;">
+                             <img class="card-img-top" src="./images/${Producto.imagen}" alt="Card image cap">
                              <div class="card-body">
-                               <h5 class="card-title">Card title</h5>
-                               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                               <a href="#" class="btn btn-primary">Go somewhere</a>
+                               <h3 class="card-title">${Producto.nombre}</h3>
+                               <p class="card-text">Disponible actualmente en color ${Producto.color}.</p>
+                               <h5 class="card-title">$${Producto.precio}</h5>
+                               <input type="button" onclick="agregarCarrito(${Producto.id})" class="btn btn-primary" value="Agregar al carrito">
                              </div>
-                           </div>`;
+                          </div>`
                           document.body.append(card);
     }
 }
 contenedorProductosStanley2(productosStanley);
 
+const arrayCarrito = [];
 
-/*alert(`Actualmente tenemos stock de las siguientes secciones de productos:\n 1: ${lineaProducto0}.(SOLO FUNCIONA ESTE)\n 2: ${lineaProducto1}.\n Por favor, escriba el numero correspondiente al producto que desea ver.`);
-
-let productUser = parseInt(prompt("Que línea de productos está interesado en ver?"));
-let productUserInfo 
-
-// ---- Caso de linea de producto elegido + info con FOR + IF + forEach ---- //
-
-for (i = 0; i <= 3; i++) {
-    if (productUser === 1) {
-        productUserInfo = prompt(`Actualmente contamos con ${producto0.nombre}, ${producto1.nombre} y ${producto2.nombre}. Desea ver la info de estos productos? Escriba si, de lo contrario, enter para continuar.`);
-        if (productUserInfo === "si") {
-            productosStanley.forEach(Producto => {
-                alert(`Producto: ${Producto.nombre}.\nColor: ${Producto.color}.\nPrecio: $${Producto.precio}.`);
-            });
-            break;
-        } else {
-            break;
-        }
-    } else if (productUser === 2) {
-        productUserInfo2 = prompt(`Actualmente contamos con ${producto00.nombre}, ${producto11.nombre}, ${producto22.nombre} y ${producto33.nombre}. Desea ver la info de estos productos? Escriba si, de lo contrario, enter para continuar.`);
-        if (productUserInfo2 === "si") {
-            productosApple.forEach(Producto => {
-                alert(`Producto: ${Producto.nombre}.\nColor: ${Producto.color}.\nPrecio: U$D${Producto.precio}.`);
-            });
-            break;
-        } else {
-            break;
-        }
-    } else {
-        productUser = parseInt(prompt("Por favor, ingrese un caracter valido como el 1 o el 2."));
+class objetosCarrito{
+    constructor(producto, cantidad){
+        this.producto = producto;
+        this.cantidad = cantidad
+    }
+    sumaCarrito(){
+        this.cantidad = this.cantidad + 1
     }
 }
 
-let typeProductUser
-let segundoProducto 
-let typeProductUser2 
-
-let productUserCantidad
-let productUserCantidad2
-let precioLineaStanley = 20000;
-let totalProductosStanley
-let resultadoSumarProductos
-let totalProductoStanley
-
-// ---- Proceso de compra productos linea Stanley ---- //
-
-if (productUser === 1) {
-    typeProductUser = prompt("Mencione que producto desea comprar:");
-    for (i = 0; i <= 2; i++) {
-        if (typeProductUser === producto0.nombre.toLowerCase()) {
-            alert(`Usted ha seleccionado ${producto0.nombre}, el precio de estos productos es de ${producto0.precio} c/u.`);
-            break;
-        } else if (typeProductUser === producto1.nombre.toLowerCase()) {
-            alert(`Usted ha seleccionado ${producto1.nombre}, el precio de estos productos es de ${producto1.precio} c/u.`);
-            break;
-        } else if (typeProductUser === producto2.nombre.toLowerCase()) {
-            alert(`Usted ha seleccionado ${producto2.nombre}, el precio de estos productos es de ${producto2.precio} c/u.`);
-            break;
-        } else {
-            typeProductUser = prompt("Por favor, ingrese un producto de los mencionados anteriormente.");
-        }
-    }
-
-    segundoProducto = prompt("Desea comprar otro producto? Responda si, de lo contrario apriete enter:")
-    
-    if (segundoProducto === "si") {
-        typeProductUser2 = prompt(" Mencione que otro producto desea comprar:");
-        for (i = 0; i <= 2; i++) {
-            if (typeProductUser2 === producto0.nombre.toLowerCase()) {
-                alert(`Usted ha seleccionado ${producto0.nombre}, el precio de estos productos es de ${producto0.precio} c/u.`);
-                break;
-            } else if (typeProductUser2 === producto1.nombre.toLowerCase()) {
-                alert(`Usted ha seleccionado ${typeProductUser2}, el precio de estos productos es de ${producto1.precio} c/u.`);
-                break;
-            } else if (typeProductUser2 === producto2.nombre.toLowerCase()) {
-                alert(`Usted ha seleccionado ${typeProductUser2}, el precio de estos productos es de ${producto2.precio} c/u.`);
-                break;
-            } else {
-                typeProductUser2 = prompt("Por favor, ingrese un producto de los mencionados anteriormente.");
-            }
-        }    
-        
-        productUserCantidad = parseInt(prompt(`Cuantos productos esta ineresado en comprar de ${typeProductUser} ?`));
-        productUserCantidad2 = parseInt(prompt(`Cuantos productos esta ineresado en comprar de ${typeProductUser2} ?`));
-
-        function sumarProductos(_productUserCantidad, _productUserCantidad2) {
-            return productUserCantidad + productUserCantidad2;
-        }
-        resultadoSumarProductos = sumarProductos(productUserCantidad, productUserCantidad2);
-        alert(`Usted ha elegido: ${resultadoSumarProductos} productos; ${productUserCantidad} ${typeProductUser} y ${productUserCantidad2} ${typeProductUser2}.`);
-
-        function multiplicarProductos(_resultadoSumarProductos, _precioLineaStanley) {
-            return resultadoSumarProductos * precioLineaStanley;
-        }
-        totalProductosStanley = multiplicarProductos(resultadoSumarProductos, precioLineaStanley);
-        alert(`El total es de ${totalProductosStanley} pesos.`);
-    } else {
-        productUserCantidad = parseInt(prompt(`Cuantos productos esta ineresado en comprar de ${typeProductUser}?`));
-        
-        alert(`Usted ha elegido: ${productUserCantidad} ${typeProductUser}.`);
-
-        function multiplicarProducto(_productUserCantidad, _precioLineaStanley) {
-            return productUserCantidad * precioLineaStanley;
-        }
-        totalProductoStanley = multiplicarProducto(productUserCantidad, precioLineaStanley);
-        alert(`El total es de ${totalProductoStanley} pesos.`)
-    }    
-}
-
-// ---- Prueba mostrar precio en pesos de productos Apple con metodo .map ---- //
-
-const productosApplePesos = productosApple.map((producto)=> {
-    return {
-        nombre: producto.nombre,
-        precio: (producto.precio * 380)
-    }
-})
-console.log(productosApplePesos);
-let verProdApplePesos = prompt("Desea ver los productos de Apple en pesos? Escriba si, de lo contrario enter para salir.")
-if (verProdApplePesos === "si") {
-    productosApplePesos.forEach(Producto => {
-        alert(`Producto: ${Producto.nombre}.\nPrecio: ${Producto.precio}.`)
-    });
-} else {}
-
-
-// ---- Mostrar por consola nuevo stock de productos compraods ---- //
-
-function restarStock(valorA, valorB){
-    return valorA - valorB;
-}
-
-if (typeProductUser === producto0.nombre.toLowerCase()) {
-    console.log("Nuevo stock de Termos: ",restarStock(producto0.stock, productUserCantidad));
-} else if (typeProductUser === producto1.nombre.toLowerCase()) {
-    console.log("Nuevo stock de Botellas: ",restarStock(producto1.stock, productUserCantidad));
-} else if (typeProductUser === producto2.nombre.toLowerCase()) {
-    console.log("Nuevo stock de Vasos: ",restarStock(producto2.stock, productUserCantidad));
-}
-if (segundoProducto === "si") {
-    if (typeProductUser2 === producto0.nombre.toLowerCase()) {
-        console.log("Nuevo stock de Termos: ",restarStock(producto0.stock, productUserCantidad2));
-    } else if (typeProductUser2 === producto1.nombre.toLowerCase()) {
-        console.log("Nuevo stock de Botellas: ",restarStock(producto1.stock, productUserCantidad2));
-    } else if (typeProductUser2 === producto2.nombre.toLowerCase()) {
-        console.log("Nuevo stock de Vasos: ",restarStock(producto2.stock, productUserCantidad2));
+function agregarCarrito(producto){
+    const existeCarrito = arrayCarrito.find(e => e.producto == producto)
+    if(existeCarrito != undefined){
+        let posicion = arrayCarrito.findIndex(elem => elem.producto == existeCarrito.producto)
+        arrayCarrito[posicion].sumaCarrito()
+    } else{
+        const alCarrito = new objetosCarrito(producto, 1)
+        arrayCarrito.push(alCarrito)
+//      console.table(arrayCarrito)
     }
 }
-*/
+
+               
+
+function verCarrito(){
+    document.body.innerHTML = ``
+    for(item of arrayCarrito){
+        let card = document.createElement("div")
+        let datosProductos = productosStanley.find(elem => elem.id == item.producto)  
+
+        card.innerHTML = `<div class="card" style="width: 18rem;">
+                             <img class="card-img-top" src="./images/${Producto.imagen}" alt="Card image cap">
+                             <div class="card-body">
+                               <h3 class="card-title">${datosProductos.nombre}</h3>
+                               <p class="card-text">Disponible actualmente en color ${datosProductos.color}.</p>
+                               <h5 class="card-title">$${datosProductos.precio}</h5>
+                               <p class="card-text"> Te llevas ${item.cantidad}</p>
+                             </div>
+                          </div>`
+                          document.body.append(card)
+    }
+}
+
+
+// ------- Boton para visualizar el carrito de compras ------- //
+
+let botonVerCarrito = document.getElementById("verCarrito");
+botonVerCarrito.addEventListener("click", botonRespuesta);
+
+function botonRespuesta(){
+    verCarrito()
+    alert("Está siendo redirigido al carrito de compras")
+    console.log("Función de visualizar carrito ejecutada correctamente")
+}
+
+
+// ------- Guardar en el Storage el carrito de compras del usuario ------- //
+
+localStorage.setItem("Carrito de usuario", arrayCarrito);
+
+let visualizarCarrito = localStorage.getItem("Carrito de usuario")
+console.log(visualizarCarrito)
+
+
+// ------- Almacenar en Storage el obejto "producto0" pasandolo a string meidante JSON ------- //
+
+const producto0JSON = JSON.stringify(producto0);
+console.log(producto0JSON);
+
+localStorage.setItem("producto0", "producto0JSON");
+
+
+// ------- Recuperar un JSON del localStorage y convertirlo a objeto nuevamente ------- //
+ 
+const objetoJSON = localStorage.getItem("producto0");
+const objeto = JSON.parse(objetoJSON);
+console.log(objeto);
