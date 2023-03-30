@@ -183,7 +183,8 @@ function verCarrito() {
     if (arrayCarrito.length >= 1) {
         let div = document.createElement("div");
         div.id = "contenedorCarrito";
-        div.innerHTML = `<h3>Has seleccionado los siguientes productos:</h3>`
+        div.innerHTML = `<h3>Has seleccionado los siguientes productos:</h3>
+                         <input type="button" class="btn btn-primary" id="agregarProductosAlCarrito" value="Agregar productos al carrito">`;
         document.body.append(div);
         
         let btn = document.createElement("button");
@@ -213,9 +214,12 @@ function verCarrito() {
                                     <p class="card-text"> Te llevas ${item.cantidad} por un total de $${totalCompraProducto}.</p>
                                 </div>
                              </div>
-                             <input type="button"  class="btn btn-primary" id="botonVaciarCarrito" value="Eliminar del carrito">`;
+                             <input type="button"  class="btn btn-primary" id=${item.id} value="Eliminar del carrito">`;
             document.body.append(div);   
-            //onclick="eliminarCarrito(${datosProductos})"  
+            //onclick="eliminarCarrito(${datosProductos})"
+            let botonEliminarCarrito = document.getElementById(`${item.id}`);
+            botonEliminarCarrito.addEventListener("click", botonEliminar); 
+  
         }
     } else {
         let div = document.createElement("div");
@@ -223,7 +227,21 @@ function verCarrito() {
         div.innerHTML = `<p>El carrito esta vacío.</p>
                          <input type="button" class="btn btn-primary" id="agregarProductosAlCarrito" value="Agregar productos al carrito">`;
         document.body.append(div);
+        let botonAgregarCarrito = document.getElementById("agregarProductosAlCarrito");
+        botonAgregarCarrito.addEventListener("click", botonRespuestaAgregarCarrito);
+    
     }
+
+    // ------- Boton para vaciar el carrito ------- //
+/*
+    let botonEliminarCarrito = document.getElementById("botonVaciarCarrito");
+    botonEliminarCarrito.addEventListener("click", botonEliminar); 
+
+    function botonEliminar(){
+        verCarrito()
+    }
+*/
+
 /*
     const botonVaciarCarrito = document.getElementById("botonVaciarCarrito");
     botonVaciarCarrito.addEventListener("click", eventoBotonVaciarCarrito);
@@ -240,6 +258,11 @@ function verCarrito() {
 }
 
 
+function botonRespuestaAgregarCarrito(){
+    alert("sr")
+}
+
+
 // ------- Boton para visualizar el carrito de compras ------- //
 
 let botonVerCarrito = document.getElementById("verCarrito");
@@ -251,33 +274,37 @@ function botonRespuesta(){
     console.log("Función de visualizar carrito ejecutada correctamente")
 }
 
+// -------Funcion Boton agregar productos al carrito ------- //    
+    
 
-// ------- Boton para vaciar el carrito ------- //
+    function botonRespuestaAgregarCarrito(){
+        alert("sr")
+    }
 
-let botonEliminarCarrito = document.getElementById("botonVaciarCarrito");
-botonEliminarCarrito.addEventListener("click", botonEliminar); 
 
-function botonEliminar(){
-    console.log("vaciarc carrito")
+// ------- Funcion para eliminar el producto carrito mediante el evento botonEliminarCarrito.addEventListener ------- //
+
+function botonEliminar(e){
+     e.preventDefault();
+    console.log("vaciarc carrito");
+    const id = e.target.id;
+    console.log(id);
+    const indice = arrayCarrito.findIndex(p => p.id == id);
+    arrayCarrito.splice(indice, 1);
     verCarrito()
 }
 
-/*
-function eliminarCarrito(){
-    alert("sgd")
-}
-*/
 
 // ------- Boton agregar productos al carrito ------- //
 
-
+/*
 let botonAgregarCarrito = document.getElementById("agregarProductosAlCarrito");
 botonAgregarCarrito.addEventListener("click", botonRespuestaAgregarCarrito);
 
 function botonRespuestaAgregarCarrito(){
     alert("srg")
 }
-
+*/
 
 
 // ------- Guardar en el Storage el carrito de compras del usuario ------- //
