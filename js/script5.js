@@ -203,7 +203,6 @@ function verCarrito() {
             let div = document.createElement("div");
             div.id = "contenedorCarrito";
             let datosProductos = productosTodos.find(elem => elem.id == item.producto)
-   //         const totalCompraProducto = (item.cantidad * datosProductos.precio);
             const totalCompraProducto = item.cantidad * datosProductos.precio;
             div.innerHTML = `<div class="card" style="width: 18rem;">
                                 <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
@@ -214,8 +213,9 @@ function verCarrito() {
                                     <p class="card-text"> Te llevas ${item.cantidad} por un total de $${totalCompraProducto}.</p>
                                 </div>
                              </div>
-                             <input type="button" onclick="eliminarCarrito(${datosProductos})" class="btn btn-primary" id="botonVaciarCarrito" value="Eliminar del carrito">`;
-            document.body.append(div);     
+                             <input type="button"  class="btn btn-primary" id="botonVaciarCarrito" value="Eliminar del carrito">`;
+            document.body.append(div);   
+            //onclick="eliminarCarrito(${datosProductos})"  
         }
     } else {
         let div = document.createElement("div");
@@ -253,23 +253,31 @@ function botonRespuesta(){
 
 
 // ------- Boton para vaciar el carrito ------- //
-/*
+
 let botonEliminarCarrito = document.getElementById("botonVaciarCarrito");
-eliminarCarrito.onclick = () =>{
-  alert("gdt")
-}    
+botonEliminarCarrito.addEventListener("click", botonEliminar); 
 
 function botonEliminar(){
-    
-    alert("Está siendo redirigido al carrito de compras")
-    console.log("Función de visualizar carrito ejecutada correctamente")
+    console.log("vaciarc carrito")
     verCarrito()
 }
-*/
 
+/*
 function eliminarCarrito(){
     alert("sgd")
 }
+*/
+
+// ------- Boton agregar productos al carrito ------- //
+
+
+let botonAgregarCarrito = document.getElementById("agregarProductosAlCarrito");
+botonAgregarCarrito.addEventListener("click", botonRespuestaAgregarCarrito);
+
+function botonRespuestaAgregarCarrito(){
+    alert("srg")
+}
+
 
 
 // ------- Guardar en el Storage el carrito de compras del usuario ------- //
