@@ -254,9 +254,9 @@ function botonRespuesta(){
 
 // ------- Boton para vaciar el carrito ------- //
 /*
-let botonEliminarCarrito = document.getElementsByClassName("btn btn-primary");
-botonEliminarCarrito.onclick= () =>{
-alert("gdt")
+let botonEliminarCarrito = document.getElementById("botonVaciarCarrito");
+eliminarCarrito.onclick = () =>{
+  alert("gdt")
 }    
 
 function botonEliminar(){
@@ -266,6 +266,10 @@ function botonEliminar(){
     verCarrito()
 }
 */
+
+function eliminarCarrito(){
+    alert("sgd")
+}
 
 
 // ------- Guardar en el Storage el carrito de compras del usuario ------- //
