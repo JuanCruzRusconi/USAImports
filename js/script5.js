@@ -44,8 +44,7 @@ const productosAppleAppleWatch = productosApple.slice(6,9);
 const productosAppleMac = productosApple.slice(9,10);
 
 
-const productosTodos = productosStanley.concat(productosApple)
-console.log(productosTodos)
+const productosTodos = productosStanley.concat(productosApple);
 
 /*
 const contenedorProductosStanley = document.getElementById("contenedorProductosStanley");
@@ -137,16 +136,19 @@ class objetosCarrito{
 }
 
 function agregarCarrito(producto){
-    const existeCarrito = arrayCarrito.find(e => e.producto == producto)
+    const existeCarrito = arrayCarrito.find(e => e.producto == producto);
     if(existeCarrito != undefined){
         let posicion = arrayCarrito.findIndex(elem => elem.producto == existeCarrito.producto)
         arrayCarrito[posicion].sumaCarrito()
+        arrayCarrito.push(posicion);
+        localStorage.setItem('arrayCarrito', JSON.stringify(arrayCarrito));
     } else{
         const alCarrito = new objetosCarrito(producto, 1)
         arrayCarrito.push(alCarrito)
-//      console.table(arrayCarrito)
+        localStorage.setItem('arrayCarrito', JSON.stringify(arrayCarrito));
     }
 }
+
               
 /*
 // FUNCIONA
@@ -201,6 +203,7 @@ function verCarrito() {
             let div = document.createElement("div");
             div.id = "contenedorCarrito";
             let datosProductos = productosTodos.find(elem => elem.id == item.producto)
+   //         const totalCompraProducto = (item.cantidad * datosProductos.precio);
             const totalCompraProducto = item.cantidad * datosProductos.precio;
             div.innerHTML = `<div class="card" style="width: 18rem;">
                                 <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
@@ -221,7 +224,7 @@ function verCarrito() {
                          <input type="button" class="btn btn-primary" id="agregarProductosAlCarrito" value="Agregar productos al carrito">`;
         document.body.append(div);
     }
-/*/ Nuevo
+/*
     const botonVaciarCarrito = document.getElementById("botonVaciarCarrito");
     botonVaciarCarrito.addEventListener("click", eventoBotonVaciarCarrito);
     function eventoBotonVaciarCarrito(){
@@ -233,8 +236,7 @@ function verCarrito() {
     agregarProductosCarrito.addEventListener("click", eventoAgregarAlCarrito);
     function eventoAgregarAlCarrito(){
     }
-    hasta aca
-//*/       
+ */ 
 }
 
 
@@ -264,20 +266,35 @@ function botonEliminar(){
     verCarrito()
 }
 */
-// ------- Guardar en el Storage el carrito de compras del usuario ------- //
 
+
+// ------- Guardar en el Storage el carrito de compras del usuario ------- //
+/*
 localStorage.setItem("Carrito de usuario", arrayCarrito);
 
 let visualizarCarrito = localStorage.getItem("Carrito de usuario")
 console.log(visualizarCarrito)
+*/
+
+// ------- Guardar en el Storage el carrito de compras del usuario (arrayCarrito) pasandolo primeramente a string meidante JSON ------- //
+
+const arrayCarritoJSON = JSON.stringify(arrayCarrito);
+console.log(arrayCarritoJSON);
+
+localStorage.setItem("arrayCarrito", arrayCarritoJSON);
+
+const visualizarCarritoUsuarioJSON = localStorage.getItem("arrayCarrito");
+const visualizarCarritoUsuario = JSON.parse(visualizarCarritoUsuarioJSON);
+console.log(visualizarCarritoUsuario);
 
 
+/*
 // ------- Almacenar en Storage el obejto "producto0" pasandolo a string meidante JSON ------- //
 
 const producto0JSON = JSON.stringify(producto0);
 console.log(producto0JSON);
 
-localStorage.setItem("producto0", "producto0JSON");
+localStorage.setItem("producto0", producto0JSON);
 
 
 // ------- Recuperar un JSON del localStorage y convertirlo a objeto nuevamente ------- //
@@ -286,7 +303,7 @@ const objetoJSON = localStorage.getItem("producto0");
 const objeto = JSON.parse(objetoJSON);
 console.log(objeto);
 
-
+*/
 
 // FALTANTES:
 
@@ -303,3 +320,4 @@ console.log(objeto);
 // ASINCRONIA Y PROMESAD
 
 // AJAX Y FETCH
+
