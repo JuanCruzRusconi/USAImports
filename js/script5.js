@@ -1,4 +1,13 @@
-//let nameUser = prompt("Éste sera el sitio web de USAImports, por favor díganos su nombre:");
+Swal.fire({
+    title: 'Bienvenido',
+    showClass: {
+      popup: 'animate__animated animate__fadeInDown'
+    },
+    hideClass: {
+      popup: 'animate__animated animate__fadeOutUp'
+    }
+  })
+//let nameUser = prompt("Éste es el sitio web de USAImports, por favor díganos su nombre:");
 //let welcomeUser = `Bienvenido ${nameUser} a USAImports`;
 
 //alert(welcomeUser);
@@ -136,6 +145,11 @@ class objetosCarrito{
 }
 
 function agregarCarrito(producto){
+    Swal.fire(
+        `Agregaste el producto al carrito. `,
+        '',
+        'success'
+      )
     const existeCarrito = arrayCarrito.find(e => e.producto == producto);
     if(existeCarrito != undefined){
         let posicion = arrayCarrito.findIndex(elem => elem.producto == existeCarrito.producto)
@@ -149,56 +163,24 @@ function agregarCarrito(producto){
     }
 }
 
-              
-/*
-// FUNCIONA
-function verCarrito(){
-//    const contenedorCarrito = document.getElementById("contenedorCarrito")
-    const elementoABorrar = document.querySelector("main", ".contenedorProductosStanley");
-    elementoABorrar.remove();
-    for(item of arrayCarrito){
-        let div = document.createElement("div");
-        div.id = "contenedorCarrito";
-        let datosProductos = productosTodos.find(elem => elem.id == item.producto)
-        const totalCompraProducto = item.cantidad * datosProductos.precio;  
-        div.innerHTML = `<p>Has seleccionado los siguientes productos:</p>
-                         <div class="card" style="width: 18rem;">
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
-                            <div class="card-body">
-                                <h5 class="card-title">${datosProductos.nombre}</h5>
-                                <p class="card-text">Disponible actualmente en color ${datosProductos.color}.</p>
-                                <h5 class="card-title">$${datosProductos.precio}</h5>
-                                <p class="card-text"> Te llevas ${item.cantidad} por un total de $${totalCompraProducto}.</p>
-                            </div>
-                         </div>`;
-//                       contenedorCarrito.appendChild(div);
-                        document.body.append(div);
-    }
-}
-*/
+ //   const elementoABorrar = document.querySelector("main", ".contenedorProductosStanley");
+   // elementoABorrar.remove();
 
 function verCarrito() {
-    const elementoABorrar = document.querySelector("main", ".contenedorProductosStanley");
-    elementoABorrar.remove();
+    document.body.innerHTML = ``;
     if (arrayCarrito.length >= 1) {
         let div = document.createElement("div");
         div.id = "contenedorCarrito";
         div.innerHTML = `<h3>Has seleccionado los siguientes productos:</h3>
-                         <input type="button" class="btn btn-primary" id="agregarProductosAlCarrito" value="Agregar productos al carrito">`;
+                         <input type="button" class="btn btn-primary" id="agregarProductosAlCarrito" value="Agregar productos al carrito">
+                         <input type="button" class="btn btn-danger" id="vaciarProductosCarrito" value="Vaciar el carrito">`;
         document.body.append(div);
         
-        let btn = document.createElement("button");
-        btn.id = "botonnn";
-        btn.innerHTML = `<input type="button" class="btn btn-danger" value="Eliminar del carrito">`;
-        document.body.append(btn);
-        let limpiarCarrito = document.getElementById("botonnn");
-        limpiarCarrito.addEventListener("click", limpiarRespuesta);
+        let botonAgregarCarrito = document.getElementById("agregarProductosAlCarrito");
+        botonAgregarCarrito.addEventListener("click", botonRespuestaAgregarCarrito);
 
-        function limpiarRespuesta(){
-//                const elementosABorrar = document.querySelector(".card");
-                const elementosABorrar = document.querySelector("#contenedorCarrito")
-                elementosABorrar.remove();
-        }
+        let botonVaciarCarrito = document.getElementById("vaciarProductosCarrito");
+        botonVaciarCarrito.addEventListener("click", botonVaciarCarrito); 
 
         for (item of arrayCarrito) {
             let div = document.createElement("div");
@@ -220,46 +202,18 @@ function verCarrito() {
             let botonEliminarCarrito = document.getElementById(`${item.id}`);
             botonEliminarCarrito.addEventListener("click", botonEliminar); 
   
-        }
+    }
     } else {
         let div = document.createElement("div");
         div.id = "contenedorCarrito";
         div.innerHTML = `<p>El carrito esta vacío.</p>
                          <input type="button" class="btn btn-primary" id="agregarProductosAlCarrito" value="Agregar productos al carrito">`;
         document.body.append(div);
+        
         let botonAgregarCarrito = document.getElementById("agregarProductosAlCarrito");
         botonAgregarCarrito.addEventListener("click", botonRespuestaAgregarCarrito);
     
     }
-
-    // ------- Boton para vaciar el carrito ------- //
-/*
-    let botonEliminarCarrito = document.getElementById("botonVaciarCarrito");
-    botonEliminarCarrito.addEventListener("click", botonEliminar); 
-
-    function botonEliminar(){
-        verCarrito()
-    }
-*/
-
-/*
-    const botonVaciarCarrito = document.getElementById("botonVaciarCarrito");
-    botonVaciarCarrito.addEventListener("click", eventoBotonVaciarCarrito);
-    function eventoBotonVaciarCarrito(){
-        const vaciarrr = document.querySelectorAll(".card")
-        vaciarrr.remove();
-    }
-
-    const agregarProductosCarrito = document.getElementById("agregarProductosAlCarrito");
-    agregarProductosCarrito.addEventListener("click", eventoAgregarAlCarrito);
-    function eventoAgregarAlCarrito(){
-    }
- */ 
-}
-
-
-function botonRespuestaAgregarCarrito(){
-    alert("sr")
 }
 
 
@@ -274,13 +228,11 @@ function botonRespuesta(){
     console.log("Función de visualizar carrito ejecutada correctamente")
 }
 
-// -------Funcion Boton agregar productos al carrito ------- //    
+// -------Funcion para agregar nuevos productos al carrito mediante botonAgregarCarrito.addEventListener ------- //    
     
-
-    function botonRespuestaAgregarCarrito(){
-        alert("sr")
-    }
-
+function botonRespuestaAgregarCarrito(){
+    
+}
 
 // ------- Funcion para eliminar el producto carrito mediante el evento botonEliminarCarrito.addEventListener ------- //
 
@@ -294,26 +246,13 @@ function botonEliminar(e){
     verCarrito()
 }
 
+// ------- Funcion para vaciar el carrito mediante el evento botonVaciarCarrito.addEventListener ------- //
 
-// ------- Boton agregar productos al carrito ------- //
-
-/*
-let botonAgregarCarrito = document.getElementById("agregarProductosAlCarrito");
-botonAgregarCarrito.addEventListener("click", botonRespuestaAgregarCarrito);
-
-function botonRespuestaAgregarCarrito(){
-    alert("srg")
+function botonVaciarCarrito(){
+    const vaciarrr = document.querySelectorAll(".card")
+    vaciarrr.remove();
 }
-*/
 
-
-// ------- Guardar en el Storage el carrito de compras del usuario ------- //
-/*
-localStorage.setItem("Carrito de usuario", arrayCarrito);
-
-let visualizarCarrito = localStorage.getItem("Carrito de usuario")
-console.log(visualizarCarrito)
-*/
 
 // ------- Guardar en el Storage el carrito de compras del usuario (arrayCarrito) pasandolo primeramente a string meidante JSON ------- //
 
@@ -327,36 +266,7 @@ const visualizarCarritoUsuario = JSON.parse(visualizarCarritoUsuarioJSON);
 console.log(visualizarCarritoUsuario);
 
 
-/*
-// ------- Almacenar en Storage el obejto "producto0" pasandolo a string meidante JSON ------- //
-
-const producto0JSON = JSON.stringify(producto0);
-console.log(producto0JSON);
-
-localStorage.setItem("producto0", producto0JSON);
 
 
-// ------- Recuperar un JSON del localStorage y convertirlo a objeto nuevamente ------- //
- 
-const objetoJSON = localStorage.getItem("producto0");
-const objeto = JSON.parse(objetoJSON);
-console.log(objeto);
 
-*/
-
-// FALTANTES:
-
-//IMAGENES DE PRODUCTOS
-
-// BOTON PARA ELIMINAR PRODUCTOS DEL CARRITO DE COMPRAS
-// BOTON PARA AGREGAR MAS PRODUCTOS AL CARRITO DE COMPRAS
-// BOTON PARA VACIAR EL CARRITO
-
-// LIBERIA COMO SWEAT ALERT
-
-// API
-
-// ASINCRONIA Y PROMESAD
-
-// AJAX Y FETCH
 
