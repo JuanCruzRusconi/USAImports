@@ -1,5 +1,6 @@
+
 Swal.fire({
-    title: 'Bienvenido',
+    title: 'Bienvenido al sitio web de USAImports',
     showClass: {
       popup: 'animate__animated animate__fadeInDown'
     },
