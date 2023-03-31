@@ -1,6 +1,6 @@
 
 Swal.fire({
-    title: 'Bienvenido al sitio web de USAImports',
+    title: 'Bienvenido al sitio web de USAImports!',
     showClass: {
       popup: 'animate__animated animate__fadeInDown'
     },
@@ -8,10 +8,6 @@ Swal.fire({
       popup: 'animate__animated animate__fadeOutUp'
     }
   })
-//let nameUser = prompt("Éste es el sitio web de USAImports, por favor díganos su nombre:");
-//let welcomeUser = `Bienvenido ${nameUser} a USAImports`;
-
-//alert(welcomeUser);
 
 const lineaProducto0 = "Linea Stanley";
 const lineaProducto1 = "Linea Apple";
@@ -25,6 +21,8 @@ class Producto{
         this.stock = stock
     }
 }
+
+// ------- Objetos de productos ------- //
 
 const producto0 = new Producto (0,"Termos", "Verde", 25000, 20);
 const producto1 = new Producto (1,"Botellas", "Blanco", 20000, 20);
@@ -43,6 +41,8 @@ const producto17 = new Producto (17,"AppleWatch 8", "Azul", 190000, 15);
 const producto18 = new Producto (18,"AppleWatch Ultra", "Negro", 342000, 15);
 const producto20 = new Producto (20,"Mac", "Gris espacial", 700000, 10);
 
+// ------- Arrays de objetos de productos ------- //
+
 const productosApple = [producto10, producto11, producto12, producto13, producto14, producto15, producto16, producto17, producto18, producto20];
 
 const productosAppleIphone = productosApple.slice(0,4);
@@ -53,25 +53,10 @@ const productosAppleAppleWatch = productosApple.slice(6,9);
 
 const productosAppleMac = productosApple.slice(9,10);
 
-
 const productosTodos = productosStanley.concat(productosApple);
 
-/*
-const contenedorProductosStanley = document.getElementById("contenedorProductosStanley");
-productosStanley.forEach(Producto => {
-    const div = document.createElement("div");
-    div.innerHTML = `<div class="card" style="width: 18rem;">
-                          <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
-                          <div class="card-body">
-                              <h5 class="card-title">${Producto.nombre}</h5>
-                              <p class="card-text">Disponible actualmente en color ${Producto.color}.</p>
-                              <h5 class="card-title">$${Producto.precio}</h5>
-                              <input type="button" onclick="agregarCarrito(${Producto.id})" class="btn btn-primary" value="Agregar al carrito">
-                          </div>
-                       </div>`;
-                      contenedorProductosStanley.appendChild(div);
-})
-*/
+// ------- Creadores de las cards de cada array de grupo de productos ------- //
+
 const contenedorProductosAppleIphone = document.getElementById("contenedorProductosAppleIphone");
 productosAppleIphone.forEach(Producto => {
     const div = document.createElement("div");
@@ -132,8 +117,11 @@ productosAppleMac.forEach(Producto => {
                       contenedorProductosAppleMac.appendChild(div);
 })
 
+// ------- Array contenedor de los productos añadidos por el usuario ------- //
 
 const arrayCarrito = [];
+
+// ------- Constructor de los objetos que seran añadidos al carrito para extraer informacion ------- //
 
 class objetosCarrito{
     constructor(producto, cantidad){
@@ -145,12 +133,14 @@ class objetosCarrito{
     }
 }
 
+// ------- Funcion para agregar prodcutos al carrito deribada del input button onclick de cada card ------- //
+
 function agregarCarrito(producto){
     Swal.fire(
         `Agregaste el producto al carrito. `,
         '',
         'success'
-      )
+    )
     const existeCarrito = arrayCarrito.find(e => e.producto == producto);
     if(existeCarrito != undefined){
         let posicion = arrayCarrito.findIndex(elem => elem.producto == existeCarrito.producto)
@@ -162,13 +152,31 @@ function agregarCarrito(producto){
         arrayCarrito.push(alCarrito)
         localStorage.setItem('arrayCarrito', JSON.stringify(arrayCarrito));
     }
+
+    // ------- Fetch para visualizar el valor del dolar y saber el tipo de cambio para comprar en dolares ------- //
+    
+    const apiDivisas = "https://criptoya.com/api/dolar";
+    const contenedorDivisas = document.getElementById("contenedorDivisas");
+    setInterval(() => {
+        fetch(apiDivisas)
+        .then (response => response.json ())
+        .then(({oficial, blue, solidario, ccb, ccl, mep, qatar})=>{
+            contenedorDivisas.innerHTML= `
+            <h2>Aceptamos Dólares al valor de cambio del Blue: </h2>
+            <p>Dolar Oficial: ${oficial}</p>
+            <p>Dolar Blue: ${blue}</p>
+            <p>Dolar Solidario: ${solidario}</p>
+            <p>Dolar Qatar: ${qatar}</p>`        
+        })
+        .catch(error => console.error (error))    
+    }, 3000);
 }
 
- //   const elementoABorrar = document.querySelector("main", ".contenedorProductosStanley");
-   // elementoABorrar.remove();
+// ------- Funcion que muestra unicamente los productos añadidos al carrito ------- // 
 
 function verCarrito() {
-    document.body.innerHTML = ``;
+    const elementoABorrar = document.querySelector("main", ".contenedorProductosStanley");
+    elementoABorrar.remove();
     if (arrayCarrito.length >= 1) {
         let div = document.createElement("div");
         div.id = "contenedorCarrito";
@@ -203,7 +211,7 @@ function verCarrito() {
             let botonEliminarCarrito = document.getElementById(`${item.id}`);
             botonEliminarCarrito.addEventListener("click", botonEliminar); 
   
-    }
+        }
     } else {
         let div = document.createElement("div");
         div.id = "contenedorCarrito";
@@ -217,15 +225,18 @@ function verCarrito() {
     }
 }
 
-
 // ------- Boton para visualizar el carrito de compras ------- //
 
 let botonVerCarrito = document.getElementById("verCarrito");
 botonVerCarrito.addEventListener("click", botonRespuesta);
 
 function botonRespuesta(){
+    Swal.fire(
+        `Fuiste redirigido a tu carrito de compras!`,
+        '',
+        'info'
+    )
     verCarrito()
-    alert("Está siendo redirigido al carrito de compras")
     console.log("Función de visualizar carrito ejecutada correctamente")
 }
 
@@ -235,7 +246,7 @@ function botonRespuestaAgregarCarrito(){
     
 }
 
-// ------- Funcion para eliminar el producto carrito mediante el evento botonEliminarCarrito.addEventListener ------- //
+// ------- Funcion para eliminar el producto del carrito mediante el evento botonEliminarCarrito.addEventListener ------- //
 
 function botonEliminar(e){
      e.preventDefault();
@@ -254,8 +265,7 @@ function botonVaciarCarrito(){
     vaciarrr.remove();
 }
 
-
-// ------- Guardar en el Storage el carrito de compras del usuario (arrayCarrito) pasandolo primeramente a string meidante JSON ------- //
+// ------- Guardar en el Storage el carrito de compras del usuario (arrayCarrito) pasandolo primeramente a string mediante JSON ------- //
 
 const arrayCarritoJSON = JSON.stringify(arrayCarrito);
 console.log(arrayCarritoJSON);
