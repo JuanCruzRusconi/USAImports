@@ -28,18 +28,21 @@
                     </div>
                     <div id="item2">
                         <h3>
-                            <a class="a1" href="#contenedorProductosStanley">Nosotros</a>
+                            <a class="a1" href="#footer">Nosotros</a>
                         </h3>
 
                     </div>
                     <div id="item3">
                         <h3>
-                            <a class="a1" href="#contenedorProductosStanley">Contacto</a>
+                            <a class="a1" href="#contacto">Contacto</a>
                         </h3>
 
                     </div>
                     <div id="carrito">
-                        <input type="button" id="verCarrito" value="Carrito">
+                        <a class="a1" data-bs-toggle="modal" data-bs-target="#modal">
+                            Carrito
+                            <i class="a1" id="carritoContenedor">0</i>
+                        </a>
                     </div>
                 </nav>
             </div>
@@ -61,7 +64,9 @@
             </div>
         </div>
         <div id="productos">
-            <div id="contenedorProductosStanley">
+            <div>
+                <h3 id="tituloProductos">Línea Stanley</h3>
+                <div id="contenedorProductosStanley"></div>
             </div>
 
             <div id="contenedorProductosApple">
@@ -87,12 +92,69 @@
         <div id="contenedorCarrito">
         </div>
 
-        <div id="contenedorDivisas"></div>
-    </main>       
+    </main>
+    <section class="section">
+        <p id="nosotros">Nos encargamos de la venta de productos traidos de USA, al mejor precio garantizado!</p>
+        <h4 id="dolar">Aceptamos dólares al valor de cambio del Blue:</h2>
+        <div id="contenedorDivisas"></div>  
+    </section>
+    
+    <div id="modal-container" class="modal-container"></div>
 
+    <div class="container-xl">
+        <div class="modal" tabindex="-1" role="dialog" id="modal">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Carrito</h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body"></div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="vaciarCarrito">
+                  Vaciar carrito
+                </button>
+                <button type="button" id="procesarCompra" class="btn btn-primary">
+                  Continuar compra
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Cerrar
+                </button>
+  
+                <span>Precio total:</span>
+                <p class="text-center" id="precioTotal"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    
+    <footer id="footer">
+        <div id="contacto">
+            <h4 id="tituloProductos">Contacto</h4>
+            <ul id="listaContacto">
+                <li>Tel: +54 XXX XXX-XXXX</li>
+                <li>Mail: usaimports@gmail.com</li>
+                <li>Dirección: Avenida 123 N1234, Buenos Aires</li>
+            </ul>
+        </div>
+    </footer>
 
   
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="bootstrap.bundle.min.js"></script>
     <script src="js/script5.js"></script>
 </body>
 </html>
