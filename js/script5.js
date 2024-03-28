@@ -235,19 +235,20 @@ function guardarLocalStorage(){
 }
 
 // ------- Fetch para visualizar el valor del dolar y saber el tipo de cambio para comprar en dolares ------- //
- 
+
 const apiDivisas = "https://criptoya.com/api/dolar";
 const contenedorDivisas = document.getElementById("contenedorDivisas");
 setInterval(() => {
     fetch(apiDivisas)
-    .then (response => response.json ())
-    .then(({oficial, blue, solidario, qatar})=>{
+    .then (response => response.json())
+    .then( data => {
         contenedorDivisas.innerHTML= `
-        <p>Dolar Oficial: $${oficial}</p>
-        <p>Dolar Blue: $${blue}</p>
-        <p>Dolar Solidario: $${solidario}</p>
-        <p>Dolar Qatar: $${qatar}</p>
-        <p>Fuente: https://criptoya.com/api/dolar`        
+            <p>Dolar Oficial: $${data.oficial.price}.</p>
+            <p>Dolar Ahorro: $${data.ahorro.ask}.</p>
+            <p>Dolar Tarjeta: $${data.tarjeta.price}.</p>
+            <p>Dolar Blue: $${data.blue.ask}.</p>
+            <p>Fuente: https://criptoya.com/api/dolar
+        `;   
     })
     .catch(error => console.error (error))    
 }, 3000);
