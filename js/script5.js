@@ -1,3 +1,4 @@
+
 Swal.fire({
     title: 'Bienvenido al sitio web de USAImports!',
     showClass: {
@@ -24,9 +25,9 @@ class Producto{
 
 // ------- Objetos de productos ------- //
 
-const producto0 = new Producto (0,"Termos", "Verde", 25000, 1, 20);
-const producto1 = new Producto (1,"Botellas", "Blanco", 20000, 1, 20);
-const producto2 = new Producto (2,"Vasos", "Negro", 15000, 1, 15);
+const producto0 = new Producto (0,"Termos", "Verde", 25000, 1, 20, "https://stanleypm.vtexassets.com/arquivos/ids/156828-1200-auto?v=638242729928870000&width=1200&height=auto&aspect=true");
+const producto1 = new Producto (1,"Botellas", "Blanco", 20000, 1, 20, "https://stanleypm.vtexassets.com/arquivos/ids/157716-1200-auto?v=638530305164530000&width=1200&height=auto&aspect=true");
+const producto2 = new Producto (2,"Vasos", "Negro", 15000, 1, 15, "https://stanleypm.vtexassets.com/arquivos/ids/157513-1200-auto?v=638491310742700000&width=1200&height=auto&aspect=true");
 
 const productosStanley = [producto0, producto1, producto2];
 
@@ -65,7 +66,7 @@ const contenedorProductosStanley = document.getElementById("contenedorProductosS
 productosStanley.forEach(Producto => {
     const div = document.createElement("div");
     div.innerHTML = `<div class="card" style="width: 18rem;">
-                          <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+                          <img src="${Producto.img}" width="100%" height="280" alt="${Producto.nombre}">
                           <div class="card-body">
                               <h5 class="card-title">${Producto.nombre}</h5>
                               <p class="card-text">Disponible actualmente en color ${Producto.color}.</p>
